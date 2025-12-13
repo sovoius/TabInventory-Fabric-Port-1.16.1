@@ -10,6 +10,8 @@ import org.lwjgl.glfw.GLFW;
 
 public class TabInventory implements ClientModInitializer {
 
+    private boolean wasTabDown = false;
+
     @Override
     public void onInitializeClient() {
         ClientTickEvents.END_CLIENT_TICK.register(this::onTick);
@@ -19,8 +21,18 @@ public class TabInventory implements ClientModInitializer {
         if (client.player == null) return;
         if (client.currentScreen == null) return;
 
-        // Must be TAB
-        if (!KeyBinding.isKeyPressed(GLFW.GLFW_KEY_TAB)) return;
+        boolean tabDown = GLFW.glfwGetKey(
+                client.getWindow().getHandle(),
+                GLFW.GLFW_KEY_TAB
+        ) == GLFW.GLFW_PRESS;
+
+        // Edge trigger (press, not hold)
+        if (!tabDown || wasTabDown) {
+            wasTabDown = tabDown;
+            return;
+        }
+
+        wasTabDown = true;
 
         // Must match inventory keybind
         if (!client.options.inventoryKey.matchesKey(GLFW.GLFW_KEY_TAB, 0)) return;
