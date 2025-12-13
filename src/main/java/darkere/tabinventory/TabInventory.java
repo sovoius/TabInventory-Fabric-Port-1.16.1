@@ -24,9 +24,11 @@ public class TabInventory implements ClientModInitializer {
                     GLFW.GLFW_KEY_TAB
             ) == GLFW.GLFW_PRESS;
 
-            // Edge-trigger: only once per key press
+            // Fire once per key press
             if (tabDown && !wasTabDown) {
-                if (client.options.inventoryKey.matchesKey(GLFW.GLFW_KEY_TAB, 0)
+
+                // Match inventory keybind (1.16.1 uses keyInventory)
+                if (client.options.keyInventory.matchesKey(GLFW.GLFW_KEY_TAB, 0)
                         && !(client.currentScreen instanceof ChatScreen)
                         && !(client.currentScreen instanceof AbstractCommandBlockScreen)) {
 
@@ -37,6 +39,7 @@ public class TabInventory implements ClientModInitializer {
             wasTabDown = tabDown;
         }
 
+        // Schedule next tick
         client.execute(this::tickLoop);
     }
 }
