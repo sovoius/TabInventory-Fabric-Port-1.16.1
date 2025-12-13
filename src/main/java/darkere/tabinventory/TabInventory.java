@@ -3,7 +3,7 @@ package darkere.tabinventory;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.gui.screen.CommandBlockScreen;
+import net.minecraft.client.gui.screen.AbstractCommandBlockScreen;
 import org.lwjgl.glfw.GLFW;
 
 public class TabInventory implements ClientModInitializer {
@@ -12,7 +12,7 @@ public class TabInventory implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // Register a simple tick loop via MinecraftClient
+        // Start a simple client tick loop
         MinecraftClient.getInstance().execute(this::tickLoop);
     }
 
@@ -25,11 +25,14 @@ public class TabInventory implements ClientModInitializer {
                     GLFW.GLFW_KEY_TAB
             ) == GLFW.GLFW_PRESS;
 
+            // Edge-triggered: only fire once per key press
             if (tabDown && !wasTabDown) {
+
                 // Must match inventory keybind
                 if (client.options.inventoryKey.matchesKey(GLFW.GLFW_KEY_TAB, 0)
                         && !(client.currentScreen instanceof ChatScreen)
-                        && !(client.currentScreen instanceof CommandBlockScreen)) {
+                        && !(client.currentScreen instanceof AbstractCommandBlockScreen)) {
+
                     client.player.closeScreen();
                 }
             }
@@ -37,7 +40,7 @@ public class TabInventory implements ClientModInitializer {
             wasTabDown = tabDown;
         }
 
-        // Re-run next tick
+        // Schedule next tick
         client.execute(this::tickLoop);
     }
 }
