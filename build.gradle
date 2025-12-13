@@ -14,15 +14,11 @@ dependencies {
     minecraft "com.mojang:minecraft:1.16.1"
     mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
 
-    // Fabric Loader compatible with 1.16.1
+    // Fabric Loader ONLY
     modImplementation "net.fabricmc:fabric-loader:0.9.3+build.207"
-
-    // Fabric API (required ONLY for safe client ticking)
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.42.0+1.16"
 }
 
 java {
-    // Minecraft 1.16.1 requires Java 8 bytecode
     toolchain {
         languageVersion = JavaLanguageVersion.of(8)
     }
