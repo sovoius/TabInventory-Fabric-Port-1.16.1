@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "darkere.tabinventory.mixin",
+  "package": "canaanxd.tabinventory.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
     "ScreenMixin"
