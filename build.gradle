@@ -7,16 +7,23 @@ version = "1.2"
 
 repositories {
     mavenCentral()
+    maven { url = "https://maven.fabricmc.net/" }
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:1.16.1"
     mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
-    modImplementation "net.fabricmc:fabric-loader:0.14.25"
+
+    // Correct Fabric Loader for 1.16.1
+    modImplementation "net.fabricmc:fabric-loader:0.9.3+build.207"
+
+    // Fabric API matching 1.16.x
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.16.1+build.388-1.16"
 }
 
 java {
+    // Compile for Java 8 (required by MC 1.16.1)
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(8)
     }
 }
