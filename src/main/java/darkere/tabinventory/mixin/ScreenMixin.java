@@ -1,4 +1,4 @@
-package darkere.tabinventory.mixin;
+package canaanxd.tabinventory.mixin;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
@@ -19,13 +19,13 @@ public class ScreenMixin {
 
         if (client == null || client.player == null) return;
 
-        // TAB key
+        // TAB key only
         if (keyCode != GLFW.GLFW_KEY_TAB) return;
 
-        // Must match inventory keybind
+        // Must match the inventory keybind (1.16.1 uses keyInventory)
         if (!client.options.keyInventory.matchesKey(keyCode, scanCode)) return;
 
-        // Exclusions (match Forge mod exactly)
+        // Exclusions (match vanilla / original Forge behavior)
         if ((Object) this instanceof ChatScreen) return;
         if ((Object) this instanceof AbstractCommandBlockScreen) return;
 
