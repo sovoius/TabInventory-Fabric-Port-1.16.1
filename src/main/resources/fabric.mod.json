@@ -2,23 +2,18 @@
   "schemaVersion": 1,
   "id": "tabinventory",
   "version": "1.2",
-
   "name": "Tab Inventory",
   "description": "Fixes the ability to close inventory with TAB.",
   "authors": ["darkere"],
-  "contact": {},
-
   "license": "MIT",
   "environment": "client",
-
   "entrypoints": {
     "client": [
       "darkere.tabinventory.TabInventory"
     ]
   },
-
   "depends": {
     "minecraft": "1.16.1",
-    "fabricloader": ">=0.9.0",
+    "fabricloader": ">=0.9.0"
   }
 }
