@@ -3,7 +3,7 @@
   "id": "tabinventory",
   "version": "1.2",
   "name": "Tab Inventory",
-  "description": "Fixes the ability to close inventory with TAB.",
+  "description": "Fixes the ability to close the inventory with the TAB key.",
   "authors": ["darkere"],
   "license": "MIT",
   "environment": "client",
@@ -14,6 +14,7 @@
   },
   "depends": {
     "minecraft": "1.16.1",
-    "fabricloader": ">=0.9.0"
+    "fabricloader": ">=0.9.0",
+    "fabric": "*"
   }
 }
