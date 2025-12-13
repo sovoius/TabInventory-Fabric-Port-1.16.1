@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.6.12'
 }
 
 group = "darkere.tabinventory"
@@ -14,15 +14,11 @@ dependencies {
     minecraft "com.mojang:minecraft:1.16.1"
     mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
 
-    // Correct Fabric Loader for 1.16.1
+    // Correct loader for 1.16.1
     modImplementation "net.fabricmc:fabric-loader:0.9.3+build.207"
-
-    // Fabric API matching 1.16.x
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.16.1+build.388-1.16"
 }
 
 java {
-    // Compile for Java 8 (required by MC 1.16.1)
     toolchain {
         languageVersion = JavaLanguageVersion.of(8)
     }
