@@ -1,29 +1,22 @@
 plugins {
-	id 'fabric-loom' version '0.6.49'
-	id 'maven-publish'
+    id 'fabric-loom' version '1.6-SNAPSHOT'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-archivesBaseName = "tabinventory"
-version = "1.2"
 group = "darkere.tabinventory"
+version = "1.2"
 
 repositories {
-	mavenCentral()
-	maven {
-		name = "Fabric"
-		url = "https://maven.fabricmc.net/"
-	}
+    mavenCentral()
 }
 
 dependencies {
-	minecraft "com.mojang:minecraft:1.16.1"
-	mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
-	modImplementation "net.fabricmc:fabric-loader:0.9.3+build.207"
+    minecraft "com.mojang:minecraft:1.16.1"
+    mappings "net.fabricmc:yarn:1.16.1+build.21:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.14.25"
 }
 
-tasks.withType(JavaCompile).configureEach {
-	options.encoding = "UTF-8"
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
