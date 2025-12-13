@@ -1,6 +1,7 @@
 package darkere.tabinventory;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.ingame.AbstractCommandBlockScreen;
@@ -12,34 +13,27 @@ public class TabInventory implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        MinecraftClient.getInstance().execute(this::tickLoop);
+        ClientTickEvents.END_CLIENT_TICK.register(this::onTick);
     }
 
-    private void tickLoop() {
-        MinecraftClient client = MinecraftClient.getInstance();
+    private void onTick(MinecraftClient client) {
+        if (client.player == null || client.currentScreen == null) return;
 
-        if (client.player != null && client.currentScreen != null) {
-            boolean tabDown = GLFW.glfwGetKey(
-                    client.getWindow().getHandle(),
-                    GLFW.GLFW_KEY_TAB
-            ) == GLFW.GLFW_PRESS;
+        boolean tabDown = GLFW.glfwGetKey(
+                client.getWindow().getHandle(),
+                GLFW.GLFW_KEY_TAB
+        ) == GLFW.GLFW_PRESS;
 
-            // Fire once per key press
-            if (tabDown && !wasTabDown) {
+        // Edge-triggered key press (matches Forge behavior)
+        if (tabDown && !wasTabDown) {
+            if (client.options.keyInventory.matchesKey(GLFW.GLFW_KEY_TAB, 0)
+                    && !(client.currentScreen instanceof ChatScreen)
+                    && !(client.currentScreen instanceof AbstractCommandBlockScreen)) {
 
-                // Match inventory keybind (1.16.1 uses keyInventory)
-                if (client.options.keyInventory.matchesKey(GLFW.GLFW_KEY_TAB, 0)
-                        && !(client.currentScreen instanceof ChatScreen)
-                        && !(client.currentScreen instanceof AbstractCommandBlockScreen)) {
-
-                    client.player.closeScreen();
-                }
+                client.player.closeScreen();
             }
-
-            wasTabDown = tabDown;
         }
 
-        // Schedule next tick
-        client.execute(this::tickLoop);
+        wasTabDown = tabDown;
     }
 }
