@@ -1,4 +1,4 @@
-# Fabric Example Mod
+# Tab Inventory Keybind Fix
 
 ## Setup
 
