@@ -1,4 +1,4 @@
-# Tab Inventory Bugfix (Minecraft 1.16.1)
+# Tab Inventory Keybind Bugfix (Minecraft 1.16.1)
 
 This is a small, client-side Fabric mod that restores the ability to close
 container screens (inventory, chests, crafting table, etc.) using the TAB key
