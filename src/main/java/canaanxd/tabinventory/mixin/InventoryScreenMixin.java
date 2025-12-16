@@ -2,26 +2,34 @@ package canaanxd.tabinventory.mixin;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.client.gui.screen.ingame.AbstractCommandBlockScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(InventoryScreen.class)
-public class InventoryScreenMixin {
+@Mixin(Screen.class)
+public abstract class InventoryScreenMixin {
 
-    @Inject(method = "keyPressed", at = @At("TAIL"), cancellable = true)
+    @Inject(
+        method = "keyPressed",
+        at = @At("HEAD"),
+        cancellable = true
+    )
     private void tabinventory$onKeyPressed(
-            int keyCode,
-            int scanCode,
-            int modifiers,
-            CallbackInfoReturnable<Boolean> cir
+        int keyCode,
+        int scanCode,
+        int modifiers,
+        CallbackInfoReturnable<Boolean> cir
     ) {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client == null || client.player == null) return;
+
+        if (client.player == null) return;
+        if (!(this instanceof InventoryScreen)) return;
+        if (this instanceof ChatScreen) return;
 
         // Only TAB
         if (keyCode != GLFW.GLFW_KEY_TAB) return;
@@ -29,14 +37,7 @@ public class InventoryScreenMixin {
         // Must match inventory keybind
         if (!client.options.keyInventory.matchesKey(keyCode, scanCode)) return;
 
-        // Safety exclusions (parity with original Forge mod)
-        if ((Object) this instanceof ChatScreen) return;
-        if ((Object) this instanceof AbstractCommandBlockScreen) return;
-
-        // Close inventory AFTER InventoryScreen logic
-        client.player.closeScreen();
-
-        // Consume key so nothing else re-triggers
+        client.player.closeHandledScreen();
         cir.setReturnValue(true);
     }
 }
