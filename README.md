@@ -29,4 +29,4 @@ This mod does not:
 ## Intended Use
 Personal use and speedrunning transparency.
 
-Source is public for verification purposes.
+Licensed under MIT — source available for verification.
