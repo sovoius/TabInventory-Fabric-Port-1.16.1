@@ -1,9 +1,29 @@
-# Tab Inventory Keybind Fix
+# Tab Inventory Bugfix (Minecraft 1.16.1)
 
-## Setup
+This is a small, client-side Fabric mod that restores the ability to close
+container screens (inventory, chests, crafting table, etc.) using the TAB key
+when TAB is bound to the inventory keybind.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+## Purpose
+This mod fixes a vanilla Minecraft 1.16.1 input bug where TAB does not close
+handled container screens, despite being bound to the inventory key.
 
-## License
+## Behavior
+- Pressing TAB closes any handled container screen
+- Only triggers if TAB is bound to the inventory key
+- Does not affect chat or menus
+- No tick-based logic
+- No automation
+- Mixin-only implementation
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+## Scope
+This mod does not:
+- Change gameplay logic
+- Automate inputs
+- Modify timing or RNG
+- Affect server-side behavior
+
+## Intended Use
+Personal use and speedrunning transparency.
+
+Source is public for verification purposes.
