@@ -2,7 +2,9 @@
 
 This is a small, client-side Fabric mod that restores the ability to close
 container screens (inventory, chests, crafting table, etc.) using the TAB key
-when TAB is bound to the inventory keybind.
+when TAB is bound to the inventory keybind. 
+
+This was built off of a forge mod that fixed this same behavior linked here: https://github.com/Darkere/TabInventory
 
 ## Purpose
 This mod fixes a vanilla Minecraft 1.16.1 input bug where TAB does not close
