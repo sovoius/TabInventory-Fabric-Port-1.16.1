@@ -4,7 +4,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
-import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -28,8 +27,13 @@ public abstract class InventoryScreenMixin {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (client.player == null) return;
-        if (!(this instanceof InventoryScreen)) return;
-        if (this instanceof ChatScreen) return;
+        if (client.currentScreen == null) return;
+
+        // Only affect inventory screen
+        if (!(client.currentScreen instanceof InventoryScreen)) return;
+
+        // Do not interfere with chat
+        if (client.currentScreen instanceof ChatScreen) return;
 
         // Only TAB
         if (keyCode != GLFW.GLFW_KEY_TAB) return;
