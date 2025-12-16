@@ -3,7 +3,11 @@ plugins {
 }
 
 group = "canaanxd.tabinventory"
-version = "1.2"
+version = "1.0"
+
+base {
+    archivesName.set("tabinventory-bugfix-1.16.1")
+}
 
 repositories {
     mavenCentral()
