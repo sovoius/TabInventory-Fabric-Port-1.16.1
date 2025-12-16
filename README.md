@@ -12,6 +12,7 @@ handled container screens, despite being bound to the inventory key.
 
 ## Behavior
 - Pressing TAB closes any handled container screen
+- This mod mirrors vanilla ESC behavior but only for the inventory keybind.
 - Only triggers if TAB is bound to the inventory key
 - Does not affect chat or menus
 - No tick-based logic
