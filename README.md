@@ -16,7 +16,6 @@ handled container screens, despite being bound to the inventory key.
 - Only triggers if TAB is bound to the inventory key
 - Does not affect chat or menus
 - No tick-based logic
-- No automation
 - Mixin-only implementation
 
 ## Scope
