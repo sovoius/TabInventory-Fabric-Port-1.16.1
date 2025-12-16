@@ -3,7 +3,7 @@
   "package": "canaanxd.tabinventory.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "InventoryScreenMixin"
+    "HandledScreenTabCloseMixin"
   ],
   "injectors": {
     "defaultRequire": 1
