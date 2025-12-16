@@ -3,7 +3,7 @@
   "id": "tabinventory",
   "version": "1.2",
   "name": "Tab Inventory Keybind Bugfix",
-  "description": "Restores TAB closing handled container screens when bound to inventory open/close (vanilla bugfix)."
+  "description": "Restores TAB closing handled container screens when bound to inventory open/close (vanilla bugfix).",
   "authors": [
     "darkere (original Forge mod)",
     "CanaanXD (Fabric port & bugfix)"
