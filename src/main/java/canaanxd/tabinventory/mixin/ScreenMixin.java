@@ -13,8 +13,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Screen.class)
 public class ScreenMixin {
 
-    @Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
-    private void tabinventory$onKeyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "keyPressed", at = @At("TAIL"))
+    private void tabinventory$onKeyPressed(
+            int keyCode,
+            int scanCode,
+            int modifiers,
+            CallbackInfoReturnable<Boolean> cir
+    ) {
         MinecraftClient client = MinecraftClient.getInstance();
 
         if (client == null || client.player == null) return;
@@ -22,14 +27,14 @@ public class ScreenMixin {
         // TAB key only
         if (keyCode != GLFW.GLFW_KEY_TAB) return;
 
-        // Must match the inventory keybind (1.16.1 uses keyInventory)
+        // Must match inventory keybind
         if (!client.options.keyInventory.matchesKey(keyCode, scanCode)) return;
 
-        // Exclusions (match vanilla / original Forge behavior)
+        // Exclusions
         if ((Object) this instanceof ChatScreen) return;
         if ((Object) this instanceof AbstractCommandBlockScreen) return;
 
+        // Close AFTER vanilla logic has run
         client.player.closeScreen();
-        cir.setReturnValue(true); // consume key
     }
 }
