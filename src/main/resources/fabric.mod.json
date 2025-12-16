@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "tabinventory",
   "version": "1.2",
-  "name": "Tab Inventory Bugfix",
-  "description": "Fixes a vanilla bug where the inventory cannot be closed using the TAB key when bound.",
+  "name": "Tab Inventory Keybind Bugfix",
+  "description": "Restores TAB closing handled container screens when bound to inventory open/close (vanilla bugfix)."
   "authors": [
     "darkere (original Forge mod)",
     "CanaanXD (Fabric port & bugfix)"
