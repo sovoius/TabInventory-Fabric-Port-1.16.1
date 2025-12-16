@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Screen.class)
-public abstract class InventoryScreenMixin {
+public abstract class HandledScreenTabCloseMixin {
 
     @Inject(
         method = "keyPressed",
